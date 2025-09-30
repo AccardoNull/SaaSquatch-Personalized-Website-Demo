@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SaaSquatch • Personalized Referral & Loyalty Landing</title>
+  <meta name="description" content="A clean, fast, accessible, single‑file landing page themed for SaaSquatch referrals & loyalty programs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Brand‑adjacent palette */
+      --sq-primary:#66BE61; /* brandfetch mantis */
+      --sq-primary-600:#55a752;
+      --sq-primary-700:#3e7d3b;
+      --sq-ink:#111827;
+      --sq-ink-2:#374151;
+      --sq-muted:#6B7280;
+      --sq-bg:#0b0f14;
+      --sq-card:#0f151c;
+      --sq-line:#1f2937;
+      --sq-white:#ffffff;
+      --sq-cta:#0ea5e9; /* accent for CTAs */
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      background:radial-gradient(1200px 800px at 80% -100px, rgba(102,190,97,.18) 0%, rgba(14,165,233,.08) 40%, rgba(11,15,20,1) 75%), var(--sq-bg);
+      color:var(--sq-white); line-height:1.6;
+    }
+    a{color:var(--sq-cta);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{width:min(1100px, 92%);margin-inline:auto}
+    .tag{display:inline-flex;gap:.5rem;align-items:center;padding:.35rem .6rem;border:1px solid var(--sq-line);border-radius:999px;color:#d1fae5;background:linear-gradient(180deg,rgba(102,190,97,.12),rgba(102,190,97,.05));font-weight:600;font-size:.8rem;letter-spacing:.02em}
+    .tag .dot{width:.5rem;height:.5rem;background:var(--sq-primary);border-radius:999px;box-shadow:0 0 0 3px rgba(102,190,97,.15)}
+    header.nav{position:sticky;top:0;backdrop-filter:saturate(140%) blur(8px);background:rgba(11,15,20,.72);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
+    header .navwrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo{width:28px;height:28px;border-radius:7px;background:conic-gradient(from 180deg,var(--sq-primary),#5ed2a2,#0ea5e9,var(--sq-primary));box-shadow:0 2px 10px rgba(14,165,233,.25)}
+    .brand b{font-weight:800;letter-spacing:.2px}
+    nav ul{list-style:none;display:flex;gap:1.2rem;margin:0;padding:0}
+    nav a{color:#e5e7eb;font-weight:600}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.75rem 1rem;font-weight:700;border:1px solid transparent;transition:.15s ease;white-space:nowrap}
+    .btn.primary{background:linear-gradient(180deg,var(--sq-primary),var(--sq-primary-600));color:#04210a}
+    .btn.primary:hover{filter:saturate(115%) brightness(1.02)}
+    .btn.ghost{background:transparent;border-color:#1f2937;color:#e5e7eb}
+    .btn.ghost:hover{border-color:#3b4252}
+    
+    .hero{padding:72px 0 36px;border-bottom:1px solid rgba(255,255,255,.06)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+    .hero h1{margin:0;font-size:clamp(28px, 4vw, 52px);line-height:1.08;letter-spacing:-.01em}
+    .hero p{color:#d1d5db;font-size:1.1rem}
+    .hero .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .panel{padding:24px}
+    .metric{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+    .kpi{background:linear-gradient(180deg,rgba(14,165,233,.12),rgba(14,165,233,.02));border:1px solid rgba(14,165,233,.25);border-radius:14px;padding:14px}
+    .kpi h3{margin:.2rem 0 0;font-size:1.8rem}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px dashed rgba(255,255,255,.15);border-radius:999px;color:#a7f3d0;background:rgba(5,150,105,.15)}
+    
+    .section{padding:54px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .feature{padding:20px}
+    .feature h3{margin:.2rem 0 .2rem;font-size:1.05rem}
+    .feature p{color:#d1d5db}
+
+    .usecases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .use{padding:18px}
+    .use h4{margin:.2rem 0}
+    .badge{display:inline-block;font-size:.72rem;font-weight:700;color:#052e12;background:linear-gradient(180deg,var(--sq-primary),var(--sq-primary-600));padding:.25rem .5rem;border-radius:999px}
+
+    details.faq{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+    summary{cursor:pointer;font-weight:700}
+
+    .foot{padding:32px 0 64px;border-top:1px solid rgba(255,255,255,.06);color:#9CA3AF}
+    .foot .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px}
+
+    /* Responsive */
+    @media (max-width: 950px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3,.usecases,.foot .cols{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- =================== NAV =================== -->
+  <header class="nav">
+    <div class="container navwrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <b>SaaSquatch</b>
+        <span class="tag" title="Personalized landing">
+          <span class="dot" aria-hidden="true"></span>
+          Personalized Demo
+        </span>
+      </div>
+      <nav aria-label="Primary Navigation">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <div>
+        <a class="btn ghost" href="#contact">Contact</a>
+        <a class="btn primary" href="#get-started">Request a Demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Create winning referral & loyalty experiences that run themselves.</h1>
+        <p>Launch personalized, fully‑automated programs with unique referral codes, embeddable placements, and automated reward fulfillment. Integrate with your stack and track ROI in real‑time.</p>
+        <div class="cta-row" id="get-started">
+          <a class="btn primary" href="#contact">Book a Demo</a>
+          <a class="btn ghost" href="#features">Explore Features</a>
+        </div>
+        <div class="metric">
+          <div class="kpi">
+            <div class="pill mono">auto‑rewards · webhooks</div>
+            <h3><span class="mono">5×</span> more referrals</h3>
+            <small>When programs are embedded at key touch‑points.</small>
+          </div>
+          <div class="kpi">
+            <div class="pill mono">codes · links</div>
+            <h3><span class="mono">Unique</span> sharing for every user</h3>
+            <small>Personal links, codes, and in‑app moments.</small>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card panel" role="img" aria-label="Referral program preview">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:radial-gradient(circle at 30% 30%, #9ef6a2, var(--sq-primary));"></div>
+            <div>
+              <b>Your Referral</b>
+              <div class="mono" style="color:#a7f3d0">Give $20 • Get $20</div>
+            </div>
+            <span class="badge" style="margin-left:auto">Widget</span>
+          </div>
+          <hr style="border:none;border-top:1px solid rgba(255,255,255,.08);margin:16px 0">
+          <label for="share" class="mono" style="font-size:.85rem;color:#d1d5db">Your link</label>
+          <div style="display:flex;gap:8px;margin-top:4px">
+            <input id="share" class="mono" value="https://yourapp.com/" aria-label="Your unique referral link" style="flex:1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b1117;color:#e5e7eb" readonly>
+            <button class="btn primary" onclick="copyShare()">Copy</button>
+          </div>
+          <p style="color:#9CA3AF;margin-top:10px">Rewards are granted when your friend completes a purchase. Powered by automated fulfillment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FEATURES =================== -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2 style="margin-top:0">Top Features</h2>
+      <p style="color:#d1d5db;margin-top:-6px">Everything you need to run advanced referral and loyalty programs.</p>
+      <div class="grid-3">
+        <div class="card feature">
+          <span class="badge">Codes & Links</span>
+          <h3>Unique referral identifiers</h3>
+          <p>Generate personal links and codes for every participant to ensure accurate tracking across channels.
+          </p>
+        </div>
+        <div class="card feature">
+          <span class="badge">Experiences</span>
+          <h3>Custom participant UX</h3>
+          <p>Tailor the on‑brand widgets, emails, and in‑app moments that guide users from invite → reward.</p>
+        </div>
+        <div class="card feature">
+          <span class="badge">Triggers</span>
+          <h3>Flexible reward logic</h3>
+          <p>Reward on virtually any event—trial start, first purchase, plan upgrade, or custom milestones via API.</p>
+        </div>
+        <div class="card feature">
+          <span class="badge">Placement</span>
+          <h3>Embed where it counts</h3>
+          <p>Add referral entry points at high‑intent touchpoints like post‑purchase, settings, or user dashboard.</p>
+        </div>
+        <div class="card feature">
+          <span class="badge">Fulfillment</span>
+          <h3>Automated payouts</h3>
+          <p>Automate fulfillment with gift cards, credits, discounts, upgrades, or points—no spreadsheets.</p>
+        </div>
+        <div class="card feature">
+          <span class="badge">Integrations</span>
+          <h3>Fits your stack</h3>
+          <p>Sync referral data to your CRM, billing, and data warehouse. Fire webhooks and track ROI end‑to‑end.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== USE CASES =================== -->
+  <section id="use-cases" class="section">
+    <div class="container">
+      <h2 style="margin:0">Popular Use Cases</h2>
+      <p style="color:#d1d5db;margin-top:-6px">Fast templates you can launch in days, not months.</p>
+      <div class="usecases">
+        <div class="card use">
+          <h4>SaaS Customer Referral</h4>
+          <p>Give $20, Get $20 after first paid invoice. Anti‑fraud checks included.</p>
+        </div>
+        <div class="card use">
+          <h4>E‑commerce Loyalty</h4>
+          <p>Points for UGC, reviews, and repeat purchases; redeem for discounts or gift cards.</p>
+        </div>
+        <div class="card use">
+          <h4>Fintech Acquisition</h4>
+          <p>Reward after KYC + first deposit. Compliant, auditable, and scalable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== HOW IT WORKS =================== -->
+  <section id="how-it-works" class="section">
+    <div class="container">
+      <h2 style="margin:0">How it Works</h2>
+      <ol style="margin-top:8px; padding-left:1.25rem; color:#d1d5db">
+        <li>Pick a template (Referral, Loyalty, Advocacy) and define the reward triggers.</li>
+        <li>Install the widget or embed your own UI. Generate unique links/codes per user.</li>
+        <li>Connect billing & CRM. Use webhooks to automate reward fulfillment.</li>
+        <li>Launch in‑app prompts at key moments and track conversions in the dashboard.</li>
+      </ol>
+      <div class="card panel" style="margin-top:16px">
+        <div class="mono" style="opacity:.9">Example webhook (pseudo‑JSON)</div>
+<pre class="mono" style="white-space:pre-wrap;background:#0b1117;color:#d1d5db;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.08)">{
+  "event": "purchase.completed",
+  "user_id": "usr_28a9",
+  "referrer_id": "ref_9f3c",
+  "amount": 129.00,
+  "currency": "USD",
+  "reward": { "type": "gift_card", "value": 20 }
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SOCIAL PROOF =================== -->
+  <section class="section">
+    <div class="container">
+      <div class="card panel">
+        <h3 style="margin-top:0">Why teams choose us</h3>
+        <ul style="color:#d1d5db;margin-top:6px">
+          <li>Embeddable, low‑friction UX that drives <span class="mono">5×</span> more referrals when placed at high‑intent touchpoints.</li>
+          <li>Full automation from event detection → payout → analytics.</li>
+          <li>Flexible rewards: credits, discounts, gift cards, points, upgrades, and more.</li>
+          <li>Secure, auditable program logic with anti‑fraud and rate limits.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FAQ =================== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 style="margin:0">FAQ</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <details class="faq" open>
+          <summary>Can I customize the widget and emails?</summary>
+          <p>Yes—tune copy, colors, and layout. Or build fully custom experiences using the APIs while still leveraging tracking and fulfillment.</p>
+        </details>
+        <details class="faq">
+          <summary>What do you support for rewards?</summary>
+          <p>Gift cards, account credits, discounts, upgrades, points, or your own via webhooks.</p>
+        </details>
+        <details class="faq">
+          <summary>How are rewards triggered?</summary>
+          <p>Define triggers like first paid invoice, plan upgrade, purchase threshold, or custom events. We verify and then fulfill automatically.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CONTACT / CTA =================== -->
+  <section id="contact" class="section">
+    <div class="container card panel">
+      <h2 style="margin:0">Request a Personalized Demo</h2>
+      <p style="color:#d1d5db;margin-top:4px">Tell us about your product and goals—we'll map a launch plan and sample reward logic.</p>
+      <form onsubmit="demoSubmit(event)" aria-label="Request Demo" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px">
+        <label> Name
+          <input required name="name" placeholder="Your Name" />
+        </label>
+        <label> Work Email
+          <input required name="email" type="email" placeholder="you@company.com" />
+        </label>
+        <label> Company
+          <input name="company" placeholder="Your Company" />
+        </label>
+        <label> Website
+          <input name="site" type="url" placeholder="https://…" />
+        </label>
+        <label style="grid-column:1 / -1"> Goals
+          <textarea name="goals" rows="3" placeholder="Boost trial → paid by 15%, reward on first invoice, add in‑app sharing…"></textarea>
+        </label>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btn primary" type="submit">Send Request</button>
+          <span id="status" class="mono" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="container cols">
+      <div>
+        <div class="brand"><div class="logo"></div><b>SaaSquatch</b></div>
+        <p style="max-width:52ch">Referral, loyalty & advocacy made simple. This is a personalized demo page for evaluation purposes.</p>
+      </div>
+      <div>
+        <b>Product</b>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#use-cases">Use Cases</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Company</b>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Legal</b>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* tiny form/UI resets */
+    input, textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b1117;color:#e5e7eb}
+    label{display:grid;gap:6px;font-weight:600}
+    ul{list-style:none;margin:.35rem 0 0;padding:0}
+    li{margin:.25rem 0}
+    h2{font-size:clamp(22px, 3.2vw, 34px)}
+  </style>
+
+  <script>
+    function copyShare(){
+      const input = document.getElementById('share');
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      const btn = event.currentTarget;
+      const old = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(()=> btn.textContent = old, 1200);
+    }
+    function demoSubmit(e){
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      // In production, send to your backend:
+      console.log('Demo request', data);
+      document.getElementById('status').textContent = 'Thanks! We\'ll reach out shortly.';
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
