@@ -1,3 +1,3 @@
 # SaaSquatch-Personalized-Website-Demo
-A personalized website interface design demo for SaaSquatch
+A personalized SaaSquatch webpage demo
 - Link: https://accardonull.github.io/Personalized-Webpage-SaaSquatch/
