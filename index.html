@@ -87,7 +87,6 @@
   </style>
 </head>
 <body>
-  <!-- =================== NAV =================== -->
   <header class="nav">
     <div class="container navwrap">
       <div class="brand">
@@ -113,7 +112,6 @@
     </div>
   </header>
 
-  <!-- =================== HERO =================== -->
   <section class="hero">
     <div class="container hero-grid">
       <div>
@@ -158,7 +156,6 @@
     </div>
   </section>
 
-  <!-- =================== FEATURES =================== -->
   <section id="features" class="section">
     <div class="container">
       <h2 style="margin-top:0">Top Features</h2>
@@ -199,7 +196,6 @@
     </div>
   </section>
 
-  <!-- =================== USE CASES =================== -->
   <section id="use-cases" class="section">
     <div class="container">
       <h2 style="margin:0">Popular Use Cases</h2>
@@ -221,7 +217,6 @@
     </div>
   </section>
 
-  <!-- =================== HOW IT WORKS =================== -->
   <section id="how-it-works" class="section">
     <div class="container">
       <h2 style="margin:0">How it Works</h2>
@@ -245,7 +240,6 @@
     </div>
   </section>
 
-  <!-- =================== SOCIAL PROOF =================== -->
   <section class="section">
     <div class="container">
       <div class="card panel">
@@ -260,7 +254,6 @@
     </div>
   </section>
 
-  <!-- =================== FAQ =================== -->
   <section id="faq" class="section">
     <div class="container">
       <h2 style="margin:0">FAQ</h2>
@@ -281,7 +274,6 @@
     </div>
   </section>
 
-  <!-- =================== CONTACT / CTA =================== -->
   <section id="contact" class="section">
     <div class="container card panel">
       <h2 style="margin:0">Request a Personalized Demo</h2>
@@ -345,7 +337,7 @@
   </footer>
 
   <style>
-    /* tiny form/UI resets */
+    /* UI resets */
     input, textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0b1117;color:#e5e7eb}
     label{display:grid;gap:6px;font-weight:600}
     ul{list-style:none;margin:.35rem 0 0;padding:0}
@@ -367,7 +359,6 @@
     function demoSubmit(e){
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target).entries());
-      // In production, send to your backend:
       console.log('Demo request', data);
       document.getElementById('status').textContent = 'Thanks! We\'ll reach out shortly.';
       e.target.reset();
@@ -375,6 +366,7 @@
   </script>
 </body>
 </html>
+
 
 
 
